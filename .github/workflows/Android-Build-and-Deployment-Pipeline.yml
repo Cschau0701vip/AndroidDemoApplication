@@ -5,15 +5,15 @@ on:
     branches:
       - "master"
 
-  workflow_dispatch:
-    inputs:
-      app_id:
-        description: 'The application Id of the current build'
-        required: true
-      branch:
-        description: 'The branch from which we have to build'
-        required: true
-        default: 'master'
+  #workflow_dispatch:
+  #  inputs:
+  #   app_id:
+  #      description: 'The application Id of the current build'
+  #      required: true
+  #    branch:
+  #      description: 'The branch from which we have to build'
+  #      required: true
+  #      default: 'master'
 
 jobs:
 #   STEP 1 : Setup and Build the Project
