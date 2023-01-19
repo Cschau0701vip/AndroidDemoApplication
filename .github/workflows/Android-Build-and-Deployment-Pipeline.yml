@@ -19,7 +19,7 @@ jobs:
 #   STEP 1 : Setup and Build the Project
   build:
     name: Setup Environment and build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout the code to specific branch
         uses: actions/checkout@v2
@@ -60,7 +60,7 @@ jobs:
   upload:
     needs: [ build ]
     name: Upload the signed artifact
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Upload Bundle
         uses: actions/upload-artifact@v2
@@ -73,7 +73,7 @@ jobs:
   deploy:
     needs: [ build ]
     name: Create release on Playstore
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
