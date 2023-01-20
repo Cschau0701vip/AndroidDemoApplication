@@ -50,6 +50,9 @@ jobs:
       - name: Generate app bundle
         run: ./gradlew app:bundleRelease --stacktrace
         
+      - name: listing
+        run: ls
+        
       - name: Sign app bundle
         run: |
           jarsigner -keystore app/*.jks \
