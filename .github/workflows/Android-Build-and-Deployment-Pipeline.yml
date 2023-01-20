@@ -89,23 +89,41 @@ jobs:
           path: app/build/outputs/bundle/release/app-release.aab
           
   
-  # Step 3 : Release to playstore
+  # Step 3 : Release to app center
   deploy:
     needs: [ build ]
-    name: Create release on Playstore
+    name: Create release on app center
     runs-on: ubuntu-latest
     steps:
-      - name: Create service_account.json
-        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
-
-      - name: Deploy to Play Store
-        uses: r0adkll/upload-google-play@v1.0.15
+      - name: App Center Distribute
+        # You may pin to the exact commit or the version.
+        # uses: devussy/AppCenter-Distribute-Github-Action@15b2bfc756f26bc5125e761b229bdb8005926760
+        uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
         with:
-          serviceAccountJson: service_account.json
-          packageName: demo_app71
-          #${{ github.event.inputs.app_id }}
-          releaseFiles: app/release/*.aab
-          track: internal
-          whatsNewDirectory: whatsnew/
-          #mappingFile: app/build/outputs/mapping/release/mapping.txt
-          inAppUpdatePriority: 5
+          # App name followed by username e.g. devussy/Sample-App
+          app: "Android Demo App"
+          # Upload token - you can get one from appcenter.ms/settings
+          token: ad7c1190b680df01a8cadfdde0b64a6ef37be32b
+          # Distribution group
+          group: Chetan
+          # Artifact to upload (.apk or .ipa)
+          file: app/release/*.aab
+          # Release notes visible on release page
+          #releaseNotes: # optional
+          # Flag to determine whether notify testers of this release or not (true/false)
+          #silent: # optional, default is true
+    
+#      - name: Create service_account.json
+#        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
+
+ #     - name: Deploy to Play Store
+ #       uses: r0adkll/upload-google-play@v1.0.15
+ #       with:
+ #         serviceAccountJson: service_account.json
+ #         packageName: demo_app71
+ #         #${{ github.event.inputs.app_id }}
+ #        releaseFiles: app/release/*.aab
+ #         track: internal
+ #        whatsNewDirectory: whatsnew/
+ #         #mappingFile: app/build/outputs/mapping/release/mapping.txt
+ #         inAppUpdatePriority: 5
