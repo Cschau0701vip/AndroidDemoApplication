@@ -53,7 +53,7 @@ jobs:
       - name: listing
         run: ls
         
-      - name: Sign app bundle
+#      - name: Sign app bundle
 #        run: |
 #          jarsigner -keystore app/*.jks \
 #          -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
