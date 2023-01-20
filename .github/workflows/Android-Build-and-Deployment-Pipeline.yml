@@ -85,7 +85,8 @@ jobs:
         uses: r0adkll/upload-google-play@v1.0.15
         with:
           serviceAccountJson: service_account.json
-          packageName: ${{ github.event.inputs.app_id }}
+          packageName: demo_app71
+          #${{ github.event.inputs.app_id }}
           releaseFiles: app/build/outputs/bundle/release/*.aab
           track: internal
           whatsNewDirectory: whatsnew/
