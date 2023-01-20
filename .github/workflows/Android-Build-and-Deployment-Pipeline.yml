@@ -71,7 +71,6 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           # The password for the key
           keyPassword: ${{ secrets.KEY_PASSWORD }} # optional
-          keystore: app/*.jks
         env:
           # override default build-tools version (29.0.3) -- optional
           BUILD_TOOLS_VERSION: "30.0.2"
