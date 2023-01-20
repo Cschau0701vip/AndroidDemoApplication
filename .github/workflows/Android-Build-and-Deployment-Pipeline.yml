@@ -1,19 +1,19 @@
 name: Android Build and Deployment Pipeline
 
 on:
-#  push:
-#    branches:
-#      - "master"
+  push:
+    branches:
+      - "master"
 
-  workflow_dispatch:
-    inputs:
-      app_id:
-        description: 'The application Id of the current build'
-        required: true
-      branch:
-        description: 'The branch from which we have to build'
-        required: true
-        default: 'master'
+#  workflow_dispatch:
+#    inputs:
+#      app_id:
+#        description: 'The application Id of the current build'
+#        required: true
+#     branch:
+#        description: 'The branch from which we have to build'
+#        required: true
+#        default: 'master'
 
 jobs:
 #   STEP 1 : Setup and Build the Project
@@ -101,7 +101,7 @@ jobs:
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
         with:
           # App name followed by username e.g. devussy/Sample-App
-          app: "Android Demo App"
+          app: 'chetan.chaudhari/Android Demo App'
           # Upload token - you can get one from appcenter.ms/settings
           token: ad7c1190b680df01a8cadfdde0b64a6ef37be32b
           # Distribution group
