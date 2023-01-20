@@ -107,7 +107,7 @@ jobs:
           # Distribution group
           group: Chetan
           # Artifact to upload (.apk or .ipa)
-          file: app/release/*.aab
+          file: app/build/outputs/release/*.aab
           # Release notes visible on release page
           #releaseNotes: # optional
           # Flag to determine whether notify testers of this release or not (true/false)
@@ -122,7 +122,7 @@ jobs:
  #         serviceAccountJson: service_account.json
  #         packageName: demo_app71
  #         #${{ github.event.inputs.app_id }}
- #        releaseFiles: app/release/*.aab
+ #        releaseFiles: app/build/outputs/release/*.aab
  #         track: internal
  #        whatsNewDirectory: whatsnew/
  #         #mappingFile: app/build/outputs/mapping/release/mapping.txt
