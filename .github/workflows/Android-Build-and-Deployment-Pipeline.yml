@@ -54,10 +54,26 @@ jobs:
         run: ls
         
       - name: Sign app bundle
-        run: |
-          jarsigner -keystore app/*.jks \
-          -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
-          app/build/outputs/bundle/release/app-release.aab ${{ secrets.ALIAS }}
+#        run: |
+#          jarsigner -keystore app/*.jks \
+#          -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
+#          app/build/outputs/bundle/release/app-release.aab ${{ secrets.ALIAS }}
+      - name: Sign Android release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          # The directory to find your release to sign
+          releaseDirectory: app/release/app-release.aab
+          # The key used to sign your release in base64 encoded format
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          # The key alias
+          alias: ${{ secrets.ALIAS }}
+          # The password to the keystore
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          # The password for the key
+          keyPassword: ${{ secrets.KEY_PASSWORD } # optional
+        env:
+          # override default build-tools version (29.0.3) -- optional
+          BUILD_TOOLS_VERSION: "30.0.2"
           
 #   STEP 2 : Upload the Artifact
   upload:
