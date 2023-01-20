@@ -50,8 +50,11 @@ jobs:
       - name: Generate app bundle
         run: ./gradlew app:bundleRelease --stacktrace
         
-      - name: listing
-        run: ls
+      - name: Check Path
+        shell: bash
+        run: | 
+          ls -R ./ 
+          pwd
         
       - name: Sign app bundle
         run: |
@@ -86,7 +89,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: signed_app_bundle
-          path: app/build/outputs/bundle/release/app-release.aab
+          path: app/build/outputs/release/app-release.aab
+          
+  
           
   
   # Step 3 : Release to app center
