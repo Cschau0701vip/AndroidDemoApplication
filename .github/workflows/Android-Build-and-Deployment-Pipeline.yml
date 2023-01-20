@@ -101,7 +101,7 @@ jobs:
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
         with:
           # App name followed by username e.g. devussy/Sample-App
-          app: 'chetan.chaudhari/Android Demo App'
+          app: 'chetan.chaudhari/Android-Demo-App'
           # Upload token - you can get one from appcenter.ms/settings
           token: ad7c1190b680df01a8cadfdde0b64a6ef37be32b
           # Distribution group
