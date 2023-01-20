@@ -70,7 +70,7 @@ jobs:
           # The password to the keystore
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           # The password for the key
-          keyPassword: ${{ secrets.KEY_PASSWORD } # optional
+          keyPassword: ${{ secrets.KEY_PASSWORD }} # optional
         env:
           # override default build-tools version (29.0.3) -- optional
           BUILD_TOOLS_VERSION: "30.0.2"
