@@ -50,6 +50,9 @@ jobs:
       - name: Generate app bundle
         run: ./gradlew app:bundleRelease --stacktrace
         
+      - name: Test app bundle
+        run:  ./gradlew test
+        
       - name: Check Path
         shell: bash
         run: | 
@@ -79,6 +82,12 @@ jobs:
 #          # override default build-tools version (29.0.3) -- optional
 #          BUILD_TOOLS_VERSION: "30.0.2"
           
+      - name: Check Path
+        shell: bash
+        run: | 
+          ls -R ./ 
+          pwd
+          
 #   STEP 2 : Upload the Artifact
   upload:
     needs: [ build ]
@@ -90,9 +99,12 @@ jobs:
         with:
           name: signed_app_bundle
           path: app/build/outputs/bundle/release
-          
   
-          
+      - name: Check Path
+        shell: bash
+        run: | 
+          ls -R ./ 
+          pwd
   
   # Step 3 : Release to app center
   deploy:
