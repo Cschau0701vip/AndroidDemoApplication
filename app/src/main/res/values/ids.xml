@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="userNameInput" type="id"></item>
+    <item name="dateOfBirthInput" type="id"></item>
+    <item name="emailInput" type="id"></item>
+    <item name="saveButton" type="id"></item>
+    <item name="revertButton" type="id"></item>
+</resources>

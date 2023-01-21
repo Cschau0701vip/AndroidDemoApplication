@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DemoApplication</string>
+    <string name="hello_world">Hello World</string>
+    <string name="hello_android">Hello Android!</string>
+    <string name="settings_title">Settings</string>
+    <string name="name_label">Name</string>
+    <string name="name_hint">Please enter your name!</string>
+    <string name="dob_label">DOB</string>
+    <string name="email_label">Email</string>
+    <string name="email_hint">Please enter you email!</string>
+    <string name="save">Submit</string>
+    <string name="revert">Cancel</string>
 </resources>
