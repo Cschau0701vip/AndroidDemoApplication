@@ -1,15 +1,15 @@
 name: Android Build and Deployment Pipeline
 
 on:
-  push:
-    branches:
-      - "master"
+#  push:
+#   branches:
+#      - "master"
 
-#  workflow_dispatch:
-#    inputs:
-#      app_id:
-#        description: 'The application Id of the current build'
-#        required: true
+  workflow_dispatch:
+    inputs:
+      app_id:
+        description: 'The application Id of the current build'
+        required: true
 #     branch:
 #        description: 'The branch from which we have to build'
 #        required: true
@@ -156,8 +156,7 @@ jobs:
  #       uses: r0adkll/upload-google-play@v1.0.15
  #       with:
  #         serviceAccountJson: service_account.json
- #         packageName: demo_app71
- #         #${{ github.event.inputs.app_id }}
+ #         packageName: ${{ github.event.inputs.app_id }}
  #        releaseFiles: app/build/outputs/release/*.aab
  #         track: internal
  #        whatsNewDirectory: whatsnew/
