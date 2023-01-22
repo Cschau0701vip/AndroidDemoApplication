@@ -61,16 +61,8 @@ jobs:
         name: build-artifacts
         path: build/artifacts/
         
-#    - name: Publish Android Build Artifacts
-#      uses: action/publish-build-artifacts@v1
-#      with:
-#        PathtoPublish: './app/build/outputs/apk'
-#        ArtifactName: 'drop'
-#        publishLocation: 'Container'
-        
     - name: Deploy Android Build Artifacts to App Center
       uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
-      #displayName: 'Deploy $(System.DefaultWorkingDirectory)/_Android/drop/*/*.apk to Visual Studio App Center'
       with:
         token: 'ad7c1190b680df01a8cadfdde0b64a6ef37be32b'
         app: 'chetan.chaudhari-nagarro.com/android-demo-app'
