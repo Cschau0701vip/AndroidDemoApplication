@@ -31,7 +31,7 @@ jobs:
           build-root-directory: ./app/
           
       - name: Run build with Gradle wrapper
-        run: ./gradlew build --scan
+        run: ./gradlew build --scan -stacktrace
         
       - name: Check Current Path
         run: |
