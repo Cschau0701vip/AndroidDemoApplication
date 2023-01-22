@@ -112,6 +112,7 @@ jobs:
         run: | 
           find . -type f -name "*.aab"
           pwd
+          echo ${{steps.sign_app.outputs.signedReleaseFile}}
       
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
