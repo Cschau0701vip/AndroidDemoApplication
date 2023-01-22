@@ -117,13 +117,13 @@ jobs:
           pwd
       
       - name: Upload Build Artifacts
-        uses: RockLobster/archiving-upload-artifact@v0.2
+        uses: RockLobster/archiving-upload-artifact@v0.2.4
         with:
           name:  build_artifacts
           path: app/*/release
           
       - name: Upload Build Artifacts
-        uses: RockLobster/archiving-upload-artifact@v0.2
+        uses: RockLobster/archiving-upload-artifact@v0.2.4
         with:
           name:  build_artifacts
           path: ./app/build/outputs/bundle/release
