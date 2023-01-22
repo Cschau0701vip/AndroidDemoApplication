@@ -48,21 +48,27 @@ jobs:
 #        pwd
           
     - name: Signing Android with Gradle
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: ./app/release
-        signingKeyBase64: '${{ secrets.SIGNING_KEY }}'
-        alias: '${{ secrets.ALIAS }}'
-        keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
-        keyPassword: '${{ secrets.KEY_PASSWORD }}'
+      id: sign_app
+      run: |
+        jarsigner -keystore app/*.jks \
+        -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
+        app/build/outputs/bundle/release/app-release.aab ${{ secrets.ALIAS }}
+#      uses: r0adkll/sign-android-release@v1
+#      with:
+#        releaseDirectory: ./app/release
+#        signingKeyBase64: '${{ secrets.SIGNING_KEY }}'
+#        alias: '${{ secrets.ALIAS }}'
+#        keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
+#        keyPassword: '${{ secrets.KEY_PASSWORD }}'
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: build/artifacts/
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   deploy:
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Android Build Artifacts to App Center
