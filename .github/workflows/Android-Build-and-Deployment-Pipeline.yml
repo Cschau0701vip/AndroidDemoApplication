@@ -55,6 +55,9 @@ jobs:
         run: | 
           ls -R ./ 
           pwd
+          
+      - name: Run Linters
+        run: ./gradlew check
         
       - name: Test app bundle
         run:  ./gradlew test
@@ -105,7 +108,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: signed_app_bundle
-          path: app/build/release/
+          path: .
+        if: always()
           
       - name: Check Path
         shell: bash
