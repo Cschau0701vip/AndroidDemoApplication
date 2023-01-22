@@ -52,7 +52,8 @@ jobs:
       run: |
         jarsigner -keystore app/*.jks \
         -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
-        app/build/*/release/app-release.aab ${{ secrets.ALIAS }}
+        */*.aab ${{ secrets.ALIAS }}
+        
 #      uses: r0adkll/sign-android-release@v1
 #      with:
 #        releaseDirectory: ./app/release
