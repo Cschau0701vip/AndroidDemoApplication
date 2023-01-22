@@ -105,10 +105,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Upload Bundle
-        uses: actions/upload-artifact@v2
+        uses: nanoufo/action-upload-artifacts-and-release-assets@v1.4
         with:
           name: signed_app_bundle
-          path: .
+          path: app/build/release
         if: always()
           
       - name: Check Path
@@ -118,11 +118,16 @@ jobs:
           pwd
       
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
         with:
           name: build-artifacts
-          path: /home/runner/work/AndroidDemoApplication/AndroidDemoApplication
-  
+          path: ./app/build/outputs/bundle/release
+      
+      - name: Upload Build Artifacts 2
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
+        with:
+          name: build-artifacts
+          path: app/build/*/release
   
   # Step 3 : Release to app center
   deploy:
