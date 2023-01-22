@@ -92,7 +92,7 @@ jobs:
       - name: Check Path
         shell: bash
         run: | 
-          ls -R ./ 
+          ls -R app/build/outputs/bundle/release/
           pwd
           
 #   STEP 2 : Upload the Artifact
@@ -105,13 +105,15 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: signed_app_bundle
-          path: ./app/*/release
+          path: app/build/outputs/bundle/release/
           
       - name: Check Path
         shell: bash
         run: | 
           find . -type f -name "*.aab"
           pwd
+          echo "$steps"
+          echo "${{steps.sign_app}}"
           echo "${{steps.sign_app.outputs}}"
       
       - name: Upload Build Artifacts
