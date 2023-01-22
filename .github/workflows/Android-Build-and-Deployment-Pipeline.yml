@@ -105,22 +105,19 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: signed_app_bundle
-          path: app/build/outputs/bundle/release/
+          path: app/build/release/
           
       - name: Check Path
         shell: bash
         run: | 
           find . -type f -name "*.aab"
           pwd
-          echo "$steps"
-          echo "${{steps.sign_app}}"
-          echo "${{steps.sign_app.outputs}}"
       
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: /home/runner/work/AndroidDemoApplication/AndroidDemoApplication
   
   
   # Step 3 : Release to app center
