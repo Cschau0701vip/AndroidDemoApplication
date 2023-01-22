@@ -38,14 +38,14 @@ jobs:
           */*.aab
           */*.apk
           
-    - name: Run build with Gradle wrapper
-      run: ./gradlew build -stacktrace
+#    - name: Run build with Gradle wrapper
+#      run: ./gradlew build -stacktrace
 
-    - name: Check Current Path
-      run: |
-        yarn install
-        find . -type f -name "*.aab"
-        pwd
+#    - name: Check Current Path
+#      run: |
+#        yarn install
+#        find . -type f -name "*.aab"
+#        pwd
           
     - name: Signing Android with Gradle
       uses: r0adkll/sign-android-release@v1
