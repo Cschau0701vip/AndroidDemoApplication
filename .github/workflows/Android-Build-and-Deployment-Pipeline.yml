@@ -109,20 +109,31 @@ jobs:
       - name: Check Path
         shell: bash
         run: | 
-          ls -R ./ 
+          find . -type f -name "*.aab"
           pwd
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
           name: signed_app_bundle
-          path: ./app/*/*.aab
+          path: | 
+            ./app/*/*.aab
+            build/*/*.aab
+            app/*/*.aab
+            */*.aab
+            */*.apk
+          
+      - name: Check Path
+        shell: bash
+        run: | 
+          find . -type f -name "*.aab"
+          pwd
       
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
         with:
-          name: signed_app_bundle
-          path: ./app/build/outputs/bundle/release
+          name: build-artifacts
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
   
   
   # Step 3 : Release to app center
