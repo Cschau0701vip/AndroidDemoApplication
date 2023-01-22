@@ -26,6 +26,8 @@ jobs:
         uses: gradle/gradle-build-action@v2.3.3
         with:
           arguments: build
+          gradle-version: 6.5
+          gradle-executable: usr/local/bin
           build-root-directory: ./app/
           
       - name: Run build with Gradle wrapper
