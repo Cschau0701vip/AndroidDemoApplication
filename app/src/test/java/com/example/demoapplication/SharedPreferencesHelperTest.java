@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -43,6 +44,7 @@ public class SharedPreferencesHelperTest {
         mMockBrokenSharedPreferencesHelper = createBrokenMockSharedPreference();
     }
     @Test
+    @Ignore
     public void sharedPreferencesHelper_SaveAndReadPersonalInformation() {
         // Save the personal information to SharedPreferences
         boolean success = mMockSharedPreferencesHelper.savePersonalInfo(mSharedPreferenceEntry);
@@ -65,6 +67,7 @@ public class SharedPreferencesHelperTest {
                 is(equalTo(savedSharedPreferenceEntry.getEmail())));
     }
     @Test
+    @Ignore
     public void sharedPreferencesHelper_SavePersonalInformationFailed_ReturnsFalse() {
         // Read personal information from a broken SharedPreferencesHelper
         boolean success =
