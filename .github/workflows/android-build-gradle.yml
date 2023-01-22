@@ -50,7 +50,7 @@ jobs:
     - name: Signing Android with Gradle
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: '**/*.aab'
+        releaseDirectory: './app/release/*.aab'
         signingKeyBase64: '${{ secrets.SIGNING_KEY }}'
         alias: '${{ secrets.ALIAS }}'
         keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
