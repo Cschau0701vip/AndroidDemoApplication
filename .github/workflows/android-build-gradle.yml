@@ -44,7 +44,7 @@ jobs:
     - name: Check Current Path
       run: |
         yarn install
-        ls -R ./*.aab
+        find . -type f -name "*.aab"
         pwd
           
     - name: Signing Android with Gradle
