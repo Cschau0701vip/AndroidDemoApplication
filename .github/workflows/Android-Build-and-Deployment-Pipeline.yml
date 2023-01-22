@@ -1,15 +1,15 @@
 name: Android Build and Deployment Pipeline
 
 on:
-#  push:
-#   branches:
-#      - "master"
+  push:
+   branches:
+      - "master"
 
-  workflow_dispatch:
-    inputs:
-      app_id:
-        description: 'The application Id of the current build'
-        required: true
+#  workflow_dispatch:
+#    inputs:
+#      app_id:
+#        description: 'The application Id of the current build'
+#        required: true
 #     branch:
 #        description: 'The branch from which we have to build'
 #        required: true
@@ -107,7 +107,6 @@ jobs:
       - name: Upload Bundle
         uses: nanoufo/action-upload-artifacts-and-release-assets@v1.4
         with:
-          name: signed_app_bundle
           path: app/build/release
         if: always()
           
@@ -120,14 +119,12 @@ jobs:
       - name: Upload Build Artifacts
         uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
         with:
-          name: build-artifacts
-          path: ./app/build/outputs/bundle/release
+          args: ./app/build/outputs/bundle/release
       
       - name: Upload Build Artifacts 2
         uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
         with:
-          name: build-artifacts
-          path: app/build/*/release
+          args: app/build/*/release
   
   # Step 3 : Release to app center
   deploy:
