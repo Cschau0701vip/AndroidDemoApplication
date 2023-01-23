@@ -116,15 +116,9 @@ jobs:
           ls -R ~/app/build
           pwd
           
-      - name: Extract the Zip File
-        run: unzip ~/app/build/android_artifact.zip -d ~/app/build
+  #    - name: Extract the Zip File
+  #      run: unzip ~/app/build/android_artifact.zip -d ~/app/build
     
-      - name: Check Current Path
-        shell: bash
-        run: | 
-          find . -type f -name "*.a**"
-          pwd
-          
       - name: App Center Distribute
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
         with:
