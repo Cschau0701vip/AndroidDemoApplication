@@ -87,23 +87,6 @@ jobs:
           path: ${{ github.workspace }}/app/build/outputs
           name: android_artifact
           
-#      - name: Sign Android release
-#        uses: r0adkll/sign-android-release@v1
-#        with:
-#          # The directory to find your release to sign
-#          releaseDirectory: app/build/outputs/bundle/release
-#          # The key used to sign your release in base64 encoded format
-#          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-#          # The key alias
-#          alias: ${{ secrets.ALIAS }}
-#          # The password to the keystore
-#          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-#          # The password for the key
-#          keyPassword: ${{ secrets.KEY_PASSWORD }} # optional
-#        env:
-#          # override default build-tools version (29.0.3) -- optional
-#          BUILD_TOOLS_VERSION: "30.0.2"
-          
       - name: Check Path
         shell: bash
         run: | 
@@ -117,7 +100,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the branch
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
       
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.2
@@ -157,17 +140,3 @@ jobs:
           releaseNotes: 'Android Demo Application'
           # Flag to determine whether notify testers of this release or not (true/false)
           silent: false # optional, default is true
-    
-#      - name: Create service_account.json
-#        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
-
- #     - name: Deploy to Play Store
- #       uses: r0adkll/upload-google-play@v1.0.15
- #       with:
- #         serviceAccountJson: service_account.json
- #         packageName: ${{ github.event.inputs.app_id }}
- #        releaseFiles: app/build/outputs/release/*.aab
- #         track: internal
- #        whatsNewDirectory: whatsnew/
- #         #mappingFile: app/build/outputs/mapping/release/mapping.txt
- #         inAppUpdatePriority: 5
