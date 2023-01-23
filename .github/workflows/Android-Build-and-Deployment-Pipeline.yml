@@ -116,6 +116,13 @@ jobs:
           ls -R ~/app/build
           pwd
           
+      - name: App Center Install CLI and Publish build
+        shell: bash
+        run: |
+          npm install -g appcenter-cli
+          appcenter login --token fe00b06fff5c539b5fefdc6d23ba89f45aefbf0a
+          appcenter distribute release --app "chetan.chaudhari-nagarro.com/Android-Demo-App" --file ./android-release-app-1.0.apk  --group "Chetan"
+          
 #      - name: App Center CLI
 #        uses: avocaddo/AppCenter-Github-Action@v1.0.2
 #        with:
