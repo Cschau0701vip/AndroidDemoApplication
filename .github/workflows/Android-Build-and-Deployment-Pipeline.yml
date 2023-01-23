@@ -58,7 +58,7 @@ jobs:
           find . -type f -name "*.aab"
           pwd
           
-      - name: Generate App bundle (.apk)
+      - name: Generate Test bundle (.apk)
         run: ./gradlew app:assembleAndroidTest --stacktrace
         
       - name: Check Current Path
@@ -84,7 +84,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ github.workspace }}/artifacts
+          path: ${{ github.workspace }}
           name: android_artifact
           
 #      - name: Sign Android release
