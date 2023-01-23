@@ -75,6 +75,12 @@ jobs:
           -storepass ${{ secrets.KEY_STORE_PASSWORD }} -keypass ${{ secrets.KEY_PASSWORD }} \
           app/build/outputs/bundle/release/app-release.aab ${{ secrets.ALIAS }}
           
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}
+          name: android_artifact
+          
 #      - name: Sign Android release
 #        uses: r0adkll/sign-android-release@v1
 #        with:
@@ -111,8 +117,10 @@ jobs:
           pwd
       
       - name: Upload Build Artifacts
-        run: |
-          ls -R ./
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}
+          name: android_artifact
           
       - name: Upload Build Artifacts 2
         run: |
