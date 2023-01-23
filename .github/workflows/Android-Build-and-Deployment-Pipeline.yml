@@ -23,8 +23,8 @@ jobs:
     steps:
       - name: Checkout the code to specific branch
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.branch }}
+#        with:
+#          ref: ${{ github.event.inputs.branch }}
             
       - name: Set up JDK
         uses: actions/setup-java@v2
@@ -34,41 +34,47 @@ jobs:
                 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-              
-      - uses: actions/cache@v2
+        
+      - name: Use Cache
+        uses: actions/cache@v2
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
             
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Generate app bundle
+      - name: Generate App bundle (.aab)
         run: ./gradlew app:bundleRelease --stacktrace
         
-      - name: Check Path
+      - name: Check Current Path
         shell: bash
         run: | 
-          ls -R ./ 
+          #ls -R ./ 
+          find . -type f -name "*.aab"
           pwd
           
-      - name: Run Linters
-        run: ./gradlew check
+      - name: Generate App bundle (.apk)
+        run: ./gradlew app:assembleAndroidTest --stacktrace
         
-      - name: Test app bundle
-        run:  ./gradlew test
-        
-      - name: Check Path
+      - name: Check Current Path
         shell: bash
         run: | 
-          ls -R ./ 
+          #ls -R ./ 
+          find . -type f -name "*.apk"
           pwd
+          
+      - name: Run Gradle Linters
+        run: ./gradlew check
         
-      - name: Sign app bundle
+      - name: Test App bundle
+        run:  ./gradlew test
+        
+      - name: Signing App Bundle
         id: sign_app
         run: |
           jarsigner -keystore app/*.jks \
@@ -78,7 +84,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/artifacts
           name: android_artifact
           
 #      - name: Sign Android release
@@ -101,34 +107,12 @@ jobs:
       - name: Check Path
         shell: bash
         run: | 
-          ls -R app/build/outputs/bundle/release/
+          find . -type f -name "*.a*"
           pwd
           
-#   STEP 2 : Upload the Artifact
-  upload:
-    needs: [ build ]
-    name: Upload the signed artifact
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check Path
-        shell: bash
-        run: | 
-          find . -type f -name "*.aab"
-          pwd
-      
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          path: ${{ github.workspace }}
-          name: android_artifact
-          
-      - name: Upload Build Artifacts 2
-        run: |
-          Copy . '${GITHUB_WORKSPACE}/artifacts'   
-  
-  # Step 3 : Release to app center
+# Step 2 : Release to app center
   deploy:
-    needs: [ upload ]
+    needs: [ build ]
     name: Create release on app center
     runs-on: ubuntu-latest
     steps:
