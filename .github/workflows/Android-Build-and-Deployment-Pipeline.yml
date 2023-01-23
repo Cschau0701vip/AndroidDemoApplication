@@ -112,15 +112,7 @@ jobs:
       
       - name: Upload Build Artifacts
         run: |
-          ls app/build
-          
-      - name: Upload Build Artifacts 1
-        run: |
-          ls app/build/release
-          
-      - name: Upload Build Artifacts 2
-        run: |
-          ls ./app/build/outputs/bundle/release
+          ls -R ./
           
       - name: Upload Build Artifacts 2
         run: |
