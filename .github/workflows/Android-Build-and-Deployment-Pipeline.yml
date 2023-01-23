@@ -121,7 +121,7 @@ jobs:
         run: |
           npm install -g appcenter-cli
           appcenter login --token fe00b06fff5c539b5fefdc6d23ba89f45aefbf0a
-          appcenter distribute release --app "chetan.chaudhari-nagarro.com/Android-Demo-App" --file ./android-release-app-1.0.apk  --group "Chetan"
+          appcenter distribute release --app "chetan.chaudhari-nagarro.com/Android-Demo-App" --file /home/runner/app/build/bundle/release/app-release.aab  --group "Chetan"
           
 #      - name: App Center CLI
 #        uses: avocaddo/AppCenter-Github-Action@v1.0.2
