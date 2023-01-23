@@ -116,9 +116,33 @@ jobs:
     name: Create release on app center
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the branch
+      - uses: actions/checkout@v3
+      
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.2
+        with:
+          # Artifact name
+          name: android_artifact
+          # Destination path
+          path: ~/app/build
+      
+      - name: Check Current Path
+        shell: bash
+        run: | 
+          ls -R ~/app/build
+          pwd
+          
+      - name: Extract the Zip File
+        run: unzip ~/app/build/android_artifact.zip -d ~/app/build
+    
+      - name: Check Current Path
+        shell: bash
+        run: | 
+          find . -type f -name "*.a**"
+          pwd
+          
       - name: App Center Distribute
-        # You may pin to the exact commit or the version.
-        # uses: devussy/AppCenter-Distribute-Github-Action@15b2bfc756f26bc5125e761b229bdb8005926760
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
         with:
           # App name followed by username e.g. devussy/Sample-App
@@ -128,11 +152,11 @@ jobs:
           # Distribution group
           group: Chetan
           # Artifact to upload (.apk or .ipa)
-          file: ${{ github.workspace }}/app/build/outputs/*/*.aab
+          file: ${{ github.workspace }}/app/build/*/*.aab
           # Release notes visible on release page
-          #releaseNotes: # optional
+          releaseNotes: 'Android Demo Application'
           # Flag to determine whether notify testers of this release or not (true/false)
-          #silent: # optional, default is true
+          silent: false # optional, default is true
     
 #      - name: Create service_account.json
 #        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
