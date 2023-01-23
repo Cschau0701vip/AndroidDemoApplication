@@ -104,12 +104,6 @@ jobs:
     name: Upload the signed artifact
     runs-on: ubuntu-latest
     steps:
-      - name: Upload Bundle
-        uses: nanoufo/action-upload-artifacts-and-release-assets@v1.4
-        with:
-          path: '*/release/*.aab'
-        if: always()
-          
       - name: Check Path
         shell: bash
         run: | 
@@ -117,21 +111,20 @@ jobs:
           pwd
       
       - name: Upload Build Artifacts
-        uses: RockLobster/archiving-upload-artifact@v0.2.4
-        with:
-          name:  build_artifacts
-          path: app/*/release
+        run: |
+          ls app/build
           
-      - name: Upload Build Artifacts
-        uses: RockLobster/archiving-upload-artifact@v0.2.4
-        with:
-          name:  build_artifacts
-          path: ./app/build/outputs/bundle/release
+      - name: Upload Build Artifacts 1
+        run: |
+          ls app/build/release
           
       - name: Upload Build Artifacts 2
-        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
-        with:
-          args: app/build/*/release
+        run: |
+          ls ./app/build/outputs/bundle/release
+          
+      - name: Upload Build Artifacts 2
+        run: |
+          Copy . '${GITHUB_WORKSPACE}/artifacts'   
   
   # Step 3 : Release to app center
   deploy:
