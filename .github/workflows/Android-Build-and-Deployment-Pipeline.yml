@@ -125,7 +125,7 @@ jobs:
           # App name followed by username e.g. devussy/Sample-App
           app: 'chetan.chaudhari-nagarro.com/android-demo-app'
           # Upload token - you can get one from appcenter.ms/settings
-          token: $${ secrets.APP_CENTER_API_TOKEN_KEY }
+          token: ${{ secrets.APP_CENTER_API_TOKEN_KEY }}
           # Distribution group
           group: Chetan
           # Artifact to upload (.apk or .ipa)
