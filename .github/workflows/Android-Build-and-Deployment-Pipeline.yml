@@ -134,25 +134,25 @@ jobs:
 #     - name: Extract the Zip File
 #       run: unzip ~/app/build/android_artifact.zip -d ~/app/build
     
-      - name: App Center
-        uses: wzieba/AppCenter-Github-Action@v1.3.3
-        with:
-          appName:  'chetan.chaudhari-nagarro.com/android-demo-app'
-          token: ${{ secrets.APP_CENTER_API_TOKEN_KEY }}
-          group: Chetan
-          file: .
+#      - name: App Center
+#        uses: wzieba/AppCenter-Github-Action@v1.3.3
+#        with:
+#          appName:  'chetan.chaudhari-nagarro.com/android-demo-app'
+#          token: ${{ secrets.APP_CENTER_API_TOKEN_KEY }}
+#          group: Chetan
+#          file: .
           # Build version parameter required for .zip, .msi, .pkg and .dmg files
           #buildVersion: # optional
           # Build number parameter required for macOS .pkg and .dmg files
           #buildNumber: # optional
           # Release notes visible on release page
-          releaseNotes: 'Android Demo Application'
+#          releaseNotes: 'Android Demo Application'
           # Generate release notes based on the latest git commit
-          gitReleaseNotes: 'Android Demo Application'
+#          gitReleaseNotes: 'Android Demo Application'
           # If true, send an email notification to the distribution group
-          notifyTesters: false # optional
+#          notifyTesters: false # optional
           # If true, shows additional information from the action execution
-          debug: true # optional
+#          debug: true # optional
     
       - name: App Center Distribute
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
