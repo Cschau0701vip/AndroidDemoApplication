@@ -18,10 +18,12 @@ jobs:
         java-version: 1.8
         
     - name: build release 
-      run: ./gradlew assembleRelease
+      run: |
+        chmod +x ./gradlew
+        ./gradlew assembleRelease
       
     - name: App Center Distribute
-      uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
+      uses: devussy/AppCenter-Distribute-Github-Action@master
       with:
         app: chetan.chaudhari-nagarro.com/android-demo-app
         token: ${{secrets.APP_CENTER_API_TOKEN_KEY}}
