@@ -37,11 +37,11 @@ jobs:
       - name: Generate App bundle (.aab)
         run: ./gradlew app:bundleRelease --stacktrace
       
-    - name: App Center Distribute
-      uses: devussy/AppCenter-Distribute-Github-Action@master
-      with:
-        app: chetan.chaudhari-nagarro.com/android-demo-app
-        token: ${{secrets.APP_CENTER_API_TOKEN_KEY}}
-        group: Chetan
-        file: ./*.apk
-        silent: false
+      - name: App Center Distribute
+        uses: devussy/AppCenter-Distribute-Github-Action@master
+        with:
+          app: chetan.chaudhari-nagarro.com/android-demo-app
+          token: ${{secrets.APP_CENTER_API_TOKEN_KEY}}
+          group: Chetan
+          file: ./*.apk
+          silent: false
