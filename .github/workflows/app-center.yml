@@ -46,5 +46,5 @@ jobs:
           app: chetan.chaudhari-nagarro.com/android-demo-app
           token: ${{secrets.APP_CENTER_API_TOKEN_KEY}}
           group: Chetan
-          file: /home/runner/work/AndroidDemoApplication/AndroidDemoApplication/app/*/*.apk
+          file: ./app/build/outputs/bundle/release/app-release.aab
           silent: false
