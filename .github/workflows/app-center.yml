@@ -38,7 +38,7 @@ jobs:
         run: ./gradlew app:bundleRelease --stacktrace
         
       - name: Check Path
-        run: ls .R */app/build
+        run: find . -type f -name "*.aab"
       
       - name: App Center Distribute
         uses: devussy/AppCenter-Distribute-Github-Action@master
