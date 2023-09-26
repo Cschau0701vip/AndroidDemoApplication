@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+name: Android Build Pipeline
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - android-azure-pipeline
+      - sprint
+      - feature*
+    exclude:
+      - master
+      - release
+  paths:
+    exclude:
+      - devops/*
+  tags:
+    exclude:
+      - '*'
+
+pr: none
+
+variables:
+  - group: android-shared-variable
+  - name: environment
+    value: testing
+      
+pool:
+  vmImage: $(build-vmImage)
+
+stages:
+  - stage: buildApp
+    displayName: Build Android Application
+    variables:
+    - name: environment
+      value: development
+      readonly: true
+    jobs: 
+    - job: setVersionNumber
+      displayName: Set App Version
+      steps:
+        - script: |
+            echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)-$(Build.BuildId)"
+          displayName: Update Build Number
+     
