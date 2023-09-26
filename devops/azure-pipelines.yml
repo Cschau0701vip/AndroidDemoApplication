@@ -67,3 +67,11 @@ stages:
             javaHomeOption: 'JDKVersion'
             jdkVersionOption: '11.0.10'
             jdkArchitectureOption: 'x64'
+
+        - task: AndroidSigning@3
+          inputs:
+            apkFiles: '**/*.apk'
+            apksignerKeystoreFile: 'android-debug.keystore'
+            apksignerKeystorePassword: 'android'
+            apksignerKeystoreAlias: 'android'
+            apksignerKeyPassword: 'android'
