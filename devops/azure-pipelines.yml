@@ -56,6 +56,6 @@ stages:
             echo "##vso[build.updatebuildnumber]$(version)-$(Build.BuildId)"
           displayName: Set version number
           
-        - template: devops/android-build-signing.yml
+        - template: ./android-build-signing.yml
           parameters:
             workingDirectory: ''
