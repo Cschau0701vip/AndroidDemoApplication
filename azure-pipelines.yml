@@ -45,4 +45,25 @@ stages:
         - script: |
             echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)-$(Build.BuildId)"
           displayName: Update Build Number
-     
+    - job: buildApp
+      dependsOn: setVersionNumber
+      displayName: Gradle Build App
+      condition: and(suceeded())
+      steps:
+      - task: Gradle@3
+        inputs:
+          gradleWrapperFile: 'gradlew'
+          tasks: 'assembledebug'
+          publishJUnitResults: true
+          testResultsFiles: '**/TEST-*.xml'
+          testRunTitle: 'Test App'
+          javaHomeOption: 'JDKVersion'
+          
+      - task: AndroidSigning@3
+        inputs:
+          apkFiles: '**/*.apk'
+          apksignerKeystoreFile: 'android-debug.keystore'
+          apksignerKeystorePassword: 'android'
+          apksignerKeystoreAlias: 'android'
+          apksignerKeyPassword: 'android'
+          
