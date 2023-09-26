@@ -1,0 +1,69 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+name: Android Build Pipeline
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - sprint
+      - test*
+    exclude:
+      - release
+      - master
+  paths:
+    exclude:
+      - devops/*
+  tags:
+    exclude:
+      - '*'
+  
+pr: none
+
+variables:
+  - name: environment
+    value: dev
+    readonly: true
+  - group: android-shared-variable
+
+pool:
+  vmImage: $(build-vmImage)
+
+stages:
+  - stage:
+    jobs:
+    - job: helloWorld
+      variables:
+        - group: Testing
+      displayName: Hello World
+      steps:
+      - script: echo Hello, world!
+        displayName: 'Run a one-line script'
+
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+
+    - job: buildApp
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+      dependsOn: helloworld
+      displayName: Android Build Application
+      steps:
+        - script: |
+            echo "##vso[build.updatebuildnumber]$(version)-$(Build.BuildId)"
+          displayName: Set version number
+          
+        - task: Gradle@2
+          inputs:
+            gradleWrapperFile: 'gradlew'
+            workingDirectory: ''
+            tasks: 'assembleDebug'
+            publishJUnitResults: true
+            testResultsFiles: '**/TEST-*.xml'
+            testRunTitle: 'Android Unit Tests'
+            javaHomeOption: 'JDKVersion'
+            jdkVersionOption: '11.0.10'
+            jdkArchitectureOption: 'x64'
