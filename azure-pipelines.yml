@@ -48,7 +48,6 @@ stages:
     - job: buildApp
       dependsOn: setVersionNumber
       displayName: Gradle Build App
-      condition: and(suceeded())
       steps:
       - task: Gradle@3
         inputs:
