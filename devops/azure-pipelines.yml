@@ -56,22 +56,6 @@ stages:
             echo "##vso[build.updatebuildnumber]$(version)-$(Build.BuildId)"
           displayName: Set version number
           
-        - task: Gradle@2
-          inputs:
-            gradleWrapperFile: 'gradlew'
+        - template: devops/android-build-signing.yml
+          parameters:
             workingDirectory: ''
-            tasks: 'assembleDebug'
-            publishJUnitResults: true
-            testResultsFiles: '**/TEST-*.xml'
-            testRunTitle: 'Android Unit Tests'
-            javaHomeOption: 'JDKVersion'
-            jdkVersionOption: '11.0.10'
-            jdkArchitectureOption: 'x64'
-
-        - task: AndroidSigning@3
-          inputs:
-            apkFiles: '**/*.apk'
-            apksignerKeystoreFile: 'android-debug.keystore'
-            apksignerKeystorePassword: 'android'
-            apksignerKeystoreAlias: 'android'
-            apksignerKeyPassword: 'android'
