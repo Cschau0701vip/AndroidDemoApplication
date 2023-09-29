@@ -29,7 +29,7 @@ variables:
     value: testing
       
 pool:
-  vmImage: $(build-vmImage)
+  vmImage: 'ubuntu-29292'
 
 stages:
   - stage: buildApp
