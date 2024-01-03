@@ -18,7 +18,7 @@ jobs:
 
     - name: Use or generate the cache
       if: steps.cache-action.outputs.cache-hit != 'true'
-      run: mkdir cache-folder && touch cache-folder/hello
+      run: mkdir cache-folder && touch cache-folder/hello.txt
 
     - name: Verify we have our cached file
       run: ls cache-folder
