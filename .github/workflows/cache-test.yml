@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: 'CAI-Enterprise-Ubuntu-Latest'
+    runs-on: 'Ubuntu-Latest'
 
     steps:
     - uses: actions/checkout@v2
