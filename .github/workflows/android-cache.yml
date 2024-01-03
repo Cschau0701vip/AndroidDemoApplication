@@ -9,6 +9,7 @@ jobs:
     - uses: gradle/gradle-build-action@v2.11.1
       with:
         gradle-version: 8.6-rc-1
-        cache-write-only: true
+        #cache-write-only: true
+        cache-read-only: false
         #cache-encryption-key: ${{ secrets.GradleEncryptionKey }}
     - run: gradle build --configuration-cache
