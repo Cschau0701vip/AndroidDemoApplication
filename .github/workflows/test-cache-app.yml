@@ -1,0 +1,31 @@
+name: Test Caching App
+
+on: push
+
+jobs:
+  build:
+    runs-on: 'Ubuntu-Latest'
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build App
+      uses: gradle/gradle-build-action@v2.9.0
+      with:
+        arguments: build
+
+    - name: Enable Cache
+      id: cache-action
+      uses: actions/cache@v3
+      with:
+        path: actions
+        key: '${{ runner.os }}-${{ github.workflow }}-${{ github.workspace }}-cai-actions-iss-execute-android-gradle'
+
+    - name: Use or generate the cache
+      if: steps.cache-action.outputs.cache-hit != 'true'
+      run: mkdir actions && mv ${{ github.workspace }}/_actions/cai-actions/ actions/
+
+    - name: Verify we have our cached file
+      run: ls actions
+
+    
