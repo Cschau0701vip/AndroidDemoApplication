@@ -11,5 +11,5 @@ jobs:
         gradle-version: 8.6-rc-1
         #cache-write-only: true
         cache-read-only: false
-        #cache-encryption-key: ${{ secrets.GradleEncryptionKey }}
+        cache-encryption-key: 'testing-cache-key'
     - run: gradle build --configuration-cache
