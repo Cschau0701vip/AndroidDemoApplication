@@ -9,10 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Build App
+    - name: Gradle Build Action
       uses: gradle/gradle-build-action@v2.9.0
-      with:
-        arguments: build
+
+    - name: Build App
+      run: gradle build
 
     - name: Enable Cache
       id: cache-action
