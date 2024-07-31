@@ -29,7 +29,7 @@ variables:
     value: testing
       
 pool:
-  vmImage: 'ubuntu-29292'
+  vmImage: 'ubuntu-latest'
 
 stages:
   - stage: buildApp
