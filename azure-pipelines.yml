@@ -45,6 +45,10 @@ stages:
         - script: |
             echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)-$(Build.BuildId)"
           displayName: Update Build Number
+        - script: |
+            echo "PullRequestId:- $(System.PullRequest.PullRequestId)"
+            echo "System.PullRequest:- $(System.PullRequest)"
+          displayName: Azure variables
     - job: buildApp
       dependsOn: setVersionNumber
       displayName: Gradle Build App
