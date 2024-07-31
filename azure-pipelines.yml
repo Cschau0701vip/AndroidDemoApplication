@@ -8,6 +8,7 @@ trigger:
   batch: true
   branches:
     include:
+      - master
       - android-azure-pipeline
       - sprint
       - feature*
