@@ -13,8 +13,4 @@ jobs:
 
     - name: Install Playwright
       run: |
-        npx playwright install --with-deps
-
-    - name: Install Playwright 2
-      run: |
-        sudo apt-get update && npx playwright install --with-deps
+        npx playwright install --with-deps || (sudo apt-get update && npx playwright install --with-deps)
