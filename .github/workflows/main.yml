@@ -1,0 +1,23 @@
+name: Automated SDLC Flow for US1669125
+
+on:
+  workflow_dispatch:
+    inputs:
+      story_id:
+        description: 'Rally Story ID'
+        required: true
+        default: 'US1669125'
+  
+  push:
+    branches:
+      - master
+
+jobs:
+  sdlc-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup MCP Tools
+        uses: modelcontextprotocol/setup-mcp@v1
